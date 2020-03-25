@@ -7,7 +7,8 @@ cppcheck src \
     ${INPUT_ENABLEDINCONCLUSIVE:+--inconclusive} \
     --output-file=$REPORT_FILE \
     -j `nproc` \
-    --xml $INPUT_EXCLUDES $INPUT_INCLUDES
+    --xml \
+    $INPUT_EXCLUDES $INPUT_INCLUDES
 
 cppcheck-htmlreport \
     --file=$REPORT_FILE \
