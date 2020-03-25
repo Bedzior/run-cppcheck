@@ -20,6 +20,16 @@ inputs:
     description: 'Enable inconclusive checks'
     required: false
     default: false
+  excludes:
+    description: 'Which directories/files to exclude'
+    required: false
+  includes:
+    description: 'Which directories/files to include'
+    required: false
+  reportName:
+    description: 'Name of your report'
+    required: false
+    default: ${{ github.repository }}
 outputs:
   reportPath:
     description: 'Path to XML report file'
