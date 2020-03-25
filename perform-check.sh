@@ -5,7 +5,7 @@ REPORT_FILE=report.xml
 cppcheck src \
     --enable=$INPUT_ENABLEDCHECKS \
     ${INPUT_ENABLEDINCONCLUSIVE:+--inconclusive} \
-    --output-file=REPORT_FILE \
+    --output-file=$REPORT_FILE \
     -j `nproc` \
     --xml $INPUT_EXCLUDES $INPUT_INCLUDES
 
