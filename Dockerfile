@@ -1,5 +1,5 @@
 FROM facthunder/cppcheck
 
-COPY perform-check.sh /perform-check.sh
+COPY run-cppcheck.sh /run-cppcheck.sh
 
-ENTRYPOINT ["/perform-check.sh"]
+ENTRYPOINT ["/run-cppcheck.sh"]
