@@ -1,0 +1,34 @@
+# Copyright (c) 2020 Rafal Bedzkowski
+# Released under the term specified in file LICENSE
+
+name: 'run-cppcheck'
+description: 'Perform static code analysis using Cppcheck'
+author: 'Rafal Bedzkowski https://github.com/Bedzior'
+inputs:
+  path:
+    description: 'Path to code'
+    required: true
+  generateReport:
+    description: 'Whether to generate an XML report'
+    required: false
+    default: true
+  enabledChecks:
+    description: 'Which checks are enabled'
+    required: false
+    default: 'all'
+  enableInconclusive:
+    description: 'Enable inconclusive checks'
+    required: false
+    default: false
+outputs:
+  reportPath:
+    description: 'Path to XML report file'
+
+runs:
+  using: 'docker'
+  image: 'docker://facthunder/cppcheck'
+  entrypoint: 'perform-check.sh'
+
+branding:
+  icon: 'check'
+  color: 'gray-dark'
