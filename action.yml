@@ -36,8 +36,7 @@ outputs:
 
 runs:
   using: 'docker'
-  image: 'docker://facthunder/cppcheck'
-  entrypoint: 'perform-check.sh'
+  image: 'Dockerfile'
 
 branding:
   icon: 'check'
