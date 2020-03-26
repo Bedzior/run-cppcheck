@@ -1,19 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 set -x
 
 split_join_lines() {
+    prefix=$2
     output=''
-    readarray -t lines <<<"$1"
-    printf -v output "$2%s " "${lines[@]}"
+    IFS=', ' read -r -a array <<< "$1"
+    for line in array; do
+        output="${output:+ }$prefix$line"
+    done
     echo "$output"
 }
 
-if [[ "$INPUT_GENERATEREPORT" == 'true' ]]; then
+if [ "$INPUT_GENERATEREPORT" = 'true' ]; then
     GENERATEREPORT='yep'
     REPORT_FILE=report.xml
 fi
 
-if [[ "$INPUT_ENABLEDINCONCLUSIVE" == 'true' ]]; then
+if [ "$INPUT_ENABLEDINCONCLUSIVE" = 'true' ]; then
     ENABLEINCONCLUSIVE='yep'
 fi
 
@@ -23,8 +26,8 @@ cppcheck src \
     ${GENERATEREPORT:+--output-file=$REPORT_FILE} \
     -j "$(nproc)" \
     --xml \
-    "$(split_join_lines "$INPUT_INCLUDES" '\055I')" \
-    "$(split_join_lines "$INPUT_EXCLUDES" '\055i')"
+    "$(split_join_lines "$INPUT_INCLUDES" '-I')" \
+    "$(split_join_lines "$INPUT_EXCLUDES" '-i')"
 
 if [ $GENERATEREPORT ]; then
     cppcheck-htmlreport \
