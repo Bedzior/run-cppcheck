@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 split_join_lines() {
     prefix=$2
