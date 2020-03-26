@@ -6,7 +6,7 @@ description: 'Perform static code analysis using Cppcheck'
 author: 'Rafal Bedzkowski https://github.com/Bedzior'
 inputs:
   path:
-    description: 'Path to code'
+    description: 'Path to your project'
     required: true
   generateReport:
     description: 'Whether to generate an XML report'
@@ -21,11 +21,13 @@ inputs:
     required: false
     default: false
   excludes:
-    description: 'Which directories/files to exclude'
+    description: 'Which directories or files to exclude from analysis; format: newline delimited paths'
     required: false
+    default: ''
   includes:
-    description: 'Which directories/files to include'
+    description: 'Include paths; format: newline delimited paths'
     required: false
+    default: ''
   reportName:
     description: 'Name of your report'
     required: false
