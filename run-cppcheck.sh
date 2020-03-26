@@ -4,9 +4,7 @@ set -x
 split_join_lines() {
     prefix=$2
     output=''
-    while read line; do
-        output="${output:+ }$prefix$line"
-    done < <(echo "$1")
+    while read line; do (( output="${output:+ }$prefix$line" )); done < <(echo "$1")
     echo "$output"
 }
 
