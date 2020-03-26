@@ -4,11 +4,10 @@ set -x
 split_join_lines() {
     prefix=$2
     output=''
-    echo "$1" | while read line
-    do
-        output="$output $prefix$line"
-    done
-    echo output
+    while read line; do
+        output="${output:+ }$prefix$line"
+    done < <(echo "$1")
+    echo "$output"
 }
 
 if [ "$INPUT_GENERATEREPORT" = 'true' ]; then
@@ -16,9 +15,13 @@ if [ "$INPUT_GENERATEREPORT" = 'true' ]; then
     REPORT_FILE=report.xml
 fi
 
+if [ "$INPUT_ENABLEDINCONCLUSIVE" = 'true' ]; then
+    ENABLEINCONCLUSIVE='yep'
+fi
+
 cppcheck src \
     --enable="$INPUT_ENABLEDCHECKS" \
-    ${INPUT_ENABLEDINCONCLUSIVE:+--inconclusive} \
+    ${ENABLEINCONCLUSIVE:+--inconclusive} \
     ${GENERATEREPORT:+--output-file=$REPORT_FILE} \
     -j "$(nproc)" \
     --xml \
