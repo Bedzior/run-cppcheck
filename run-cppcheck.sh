@@ -18,7 +18,7 @@ if [ "$INPUT_ENABLED_INCONCLUSIVE" = 'true' ]; then
     ENABLEINCONCLUSIVE='yep'
 fi
 
-cppcheck src \
+cppcheck $INPUT_PATH \
     --enable="$INPUT_ENABLED_CHECKS" \
     ${ENABLE_INCONCLUSIVE:+--inconclusive} \
     ${GENERATE_REPORT:+--output-file=$REPORT_FILE} \
@@ -27,12 +27,11 @@ cppcheck src \
     -j "$(nproc)" \
     --xml \
     "$INPUT_INCLUDES" \
-    "$INPUT_EXCLUDES \
+    "$INPUT_EXCLUDES" \
 
-
-if [ $GENERATE_REPORT ]; then
+if [ '$GENERATE_REPORT' ]; then
     cppcheck-htmlreport \
-        --file=$REPORT_FILE \
+        --file=$REPORT_FILE" \
         --title="$INPUT_REPORT_NAME" \
         --report-dir=output
 fi
