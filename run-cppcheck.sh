@@ -1,37 +1,38 @@
 #!/bin/sh
 set -x
 
-split_join_lines() {
-    prefix=$2
-    output=''
-    IFS=', ' read -r -a array <<< "$1"
-    for line in array; do
-        output="${output:+ }$prefix$line"
-    done
-    echo "$output"
-}
+if [ "$INPUT_DEBUG" = 'true' ]; then
+    set -x
+    CHECK_CONFIG='yep'
+fi
 
-if [ "$INPUT_GENERATEREPORT" = 'true' ]; then
-    GENERATEREPORT='yep'
+if [ "$INPUT_VERBOSE" = 'true' ]; then
+    VERBOSE='yep'
+fi
+
+if [ "$INPUT_GENERATE_REPORT" = 'true' ]; then
+    GENERATE_REPORT='yep'
     REPORT_FILE=report.xml
 fi
 
-if [ "$INPUT_ENABLEDINCONCLUSIVE" = 'true' ]; then
-    ENABLEINCONCLUSIVE='yep'
+if [ "$INPUT_ENABLED_INCONCLUSIVE" = 'true' ]; then
+    ENABLE_INCONCLUSIVE='yep'
 fi
 
-cppcheck src \
-    --enable="$INPUT_ENABLEDCHECKS" \
-    ${ENABLEINCONCLUSIVE:+--inconclusive} \
-    ${GENERATEREPORT:+--output-file=$REPORT_FILE} \
+cppcheck "$INPUT_PATH" \
+    --enable="$INPUT_ENABLED_CHECKS" \
+    ${ENABLE_INCONCLUSIVE:+--inconclusive} \
+    ${GENERATE_REPORT:+--output-file=$REPORT_FILE} \
+    ${VERBOSE:+--verbose} \
+    ${CHECK_CONFIG:+--check-config} \
     -j "$(nproc)" \
     --xml \
-    "$(split_join_lines "$INPUT_INCLUDES" '-I')" \
-    "$(split_join_lines "$INPUT_EXCLUDES" '-i')"
+    "$INPUT_INCLUDE_DIRECTORIES" \
+    "$INPUT_EXCLUDE_FROM_CHECK"
 
-if [ $GENERATEREPORT ]; then
+if [ "$GENERATE_REPORT" ]; then
     cppcheck-htmlreport \
-        --file=$REPORT_FILE \
-        --title="$INPUT_REPORTNAME" \
+        --file="$REPORT_FILE" \
+        --title="$INPUT_REPORT_NAME" \
         --report-dir=output
 fi
