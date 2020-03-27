@@ -9,11 +9,11 @@ inputs:
     description: 'Debug script run to troubleshoot configuration errors'
     required: false
     default: false
-  enabled-checks:
+  enabled checks:
     description: 'Which checks are enabled'
     required: false
     default: 'all'
-  enable-inconclusive:
+  enable inconclusive:
     description: 'Enable inconclusive checks'
     required: false
     default: false
@@ -21,7 +21,7 @@ inputs:
     description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-I`, space-delimited'
     required: false
     default: ''
-  generate-report:
+  generate report:
     description: 'Whether to generate an XML report'
     required: false
     default: true
@@ -33,7 +33,7 @@ inputs:
     description: 'Path to your project'
     required: true
     default: '.'
-  report-name:
+  report name:
     description: 'Name of your report'
     required: false
     default: ${{ github.repository }}
