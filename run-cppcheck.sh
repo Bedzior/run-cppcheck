@@ -26,8 +26,8 @@ cppcheck "$INPUT_PATH" \
     ${CHECK_CONFIG:+--check-config} \
     -j "$(nproc)" \
     --xml \
-    "$INPUT_INCLUDES" \
-    "$INPUT_EXCLUDES"
+    "$INPUT_INCLUDE_DIRECTORIES" \
+    "$INPUT_EXCLUDE_FROM_CHECK"
 
 if [ "$GENERATE_REPORT" ]; then
     cppcheck-htmlreport \

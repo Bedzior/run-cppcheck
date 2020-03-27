@@ -17,16 +17,16 @@ inputs:
     description: 'Enable inconclusive checks'
     required: false
     default: false
-  excludes:
-    description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-I`, space-delimited'
+  exclude from check:
+    description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-i`, space-delimited'
     required: false
     default: ''
   generate report:
     description: 'Whether to generate an XML report'
     required: false
     default: true
-  includes:
-    description: 'Include paths; format: directories prefixed with `-i`, space-delimited'
+  include directories:
+    description: 'Include paths; format: directories prefixed with `-I`, space-delimited'
     required: false
     default: ''
   path:
