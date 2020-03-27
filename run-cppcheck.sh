@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 if [ "$INPUT_DEBUG" = 'true' ]; then
     set -x
