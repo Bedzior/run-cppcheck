@@ -21,11 +21,11 @@ inputs:
     required: false
     default: false
   excludes:
-    description: 'Which directories or files to exclude from analysis; format: newline delimited paths'
+    description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-I`, space-delimited'
     required: false
     default: ''
   includes:
-    description: 'Include paths; format: newline delimited paths'
+    description: 'Include paths; format: directories prefixed with `-i`, space-delimited'
     required: false
     default: ''
   reportName:
