@@ -32,6 +32,7 @@ inputs:
   path:
     description: 'Path to your project'
     required: true
+    default: '.'
   report-name:
     description: 'Name of your report'
     required: false
