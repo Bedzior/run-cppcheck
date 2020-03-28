@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ ! "$INPUT_DEBUG" = 'true' ]; then
-    unser INPUT_DEBUG
+    unset INPUT_DEBUG
 else
     set -x
     CHECK_CONFIG=true
