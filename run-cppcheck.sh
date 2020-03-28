@@ -4,7 +4,6 @@ if [ ! "$INPUT_DEBUG" = 'true' ]; then
     unset INPUT_DEBUG
 else
     set -x
-    CHECK_CONFIG=true
 fi
 
 if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
@@ -36,7 +35,7 @@ if [ ! "$INPUT_ENABLE_INCONCLUSIVE" = 'true' ]; then
 fi
 
 cppcheck "$TARGET" \
-    ${CHECK_CONFIG:+--check-config} \
+    ${INPUT_DEBUG:+--check-config} \
     --enable="$INPUT_ENABLED_CHECKS" \
     ${INPUT_ENABLE_INCONCLUSIVE:+--inconclusive} \
     ${INPUT_GENERATE_REPORT:+--output-file=$REPORT_FILE} \
