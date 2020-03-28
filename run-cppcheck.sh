@@ -10,9 +10,9 @@ fi
 if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
     echo Parameter 'path' or 'project' required
     exit 1
-elif [ "$INPUT_PROJECT" = 'true' ]; then
+elif [ "$INPUT_PROJECT" ]; then
     TARGET="--project=$INPUT_PROJECT"
-elif [ "$INPUT_PATH" = 'true' ]; then
+elif [ "$INPUT_PATH" ]; then
     TARGET="$INPUT_PATH"
 fi
 
