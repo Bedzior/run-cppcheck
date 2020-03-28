@@ -48,9 +48,10 @@ cppcheck "$TARGET" \
     "$INPUT_EXCLUDE_FROM_CHECK"
 
 if [ "$INPUT_GENERATE_REPORT" ]; then
+    REPORT_DIR="$(pwd)/output"
     cppcheck-htmlreport \
         --file="$REPORT_FILE" \
         --title="$INPUT_REPORT_NAME" \
-        --report-dir=output
-    echo "::set-output name=htmlReportPath::$(pwd)/output"
+        --report-dir="$REPORT_DIR"
+    echo "::set-output name=htmlReportPath::$REPORT_DIR"
 fi
