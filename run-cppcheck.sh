@@ -16,12 +16,16 @@ elif [ "$INPUT_PATH" ]; then
     TARGET="$INPUT_PATH"
 fi
 
+if [ ! "$INPUT_ROOT" ]; then
+    INPUT_ROOT="$(pwd)"
+fi
+
 if [ ! "$INPUT_VERBOSE" = 'true' ]; then
     unset INPUT_VERBOSE
 fi
 
 if [ "$INPUT_GENERATE_REPORT" = 'true' ]; then
-    REPORT_FILE=$(pwd)/report.xml
+    REPORT_FILE="report.xml"
     echo "::set-output name=reportPath::${REPORT_FILE}"
 else
     unset INPUT_GENERATE_REPORT

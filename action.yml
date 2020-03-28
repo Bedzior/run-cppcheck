@@ -32,7 +32,6 @@ inputs:
   path:
     description: 'Path to your project; either this or "project" ought to be set'
     required: false
-    default: ${{ github.workspace }}
   project:
     description: 'Project file containing compile lists and commands (Cppcheck GUI, CMake, Visual Studio, C++ Builder are currently supported); either this or "path" ought to be set'
     required: false
@@ -43,7 +42,6 @@ inputs:
   root:
     description: 'Root directory of the project (current directory by default)'
     required: false
-    default: ${{ github.workspace }}
   verbose:
     description: 'Verbose Cppcheck error descriptions'
     required: false
