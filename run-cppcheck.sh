@@ -16,10 +16,6 @@ elif [ "$INPUT_PATH" ]; then
     TARGET="$INPUT_PATH"
 fi
 
-if [ ! "$INPUT_ROOT" ]; then
-    INPUT_ROOT=$(pwd)
-fi
-
 if [ ! "$INPUT_VERBOSE" = 'true' ]; then
     unset INPUT_VERBOSE
 fi
@@ -48,7 +44,7 @@ cppcheck "$TARGET" \
     "$INPUT_EXCLUDE_FROM_CHECK"
 
 if [ "$INPUT_GENERATE_REPORT" ]; then
-    REPORT_DIR="$(pwd)/output"
+    REPORT_DIR="output"
     cppcheck-htmlreport \
         --file="$REPORT_FILE" \
         --title="$INPUT_REPORT_NAME" \
