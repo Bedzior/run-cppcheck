@@ -18,7 +18,7 @@ inputs:
     required: false
     default: false
   exclude from check:
-    description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-i`, space-delimited'
+    description: 'Which directories to exclude from analysis; format: paths prefixed with `-i`, space-delimited'
     required: false
     default: ''
   generate report:
