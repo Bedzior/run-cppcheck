@@ -1,36 +1,52 @@
 #!/bin/sh
-set -x
 
-if [ "$INPUT_DEBUG" = 'true' ]; then
+if [ ! "$INPUT_DEBUG" = 'true' ]; then
+    unser INPUT_DEBUG
+else
     set -x
-    CHECK_CONFIG='yep'
+    CHECK_CONFIG=true
 fi
 
-if [ "$INPUT_VERBOSE" = 'true' ]; then
-    VERBOSE='yep'
+if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
+    echo Parameter 'path' or 'PROJECT' required
+    exit 1
+elif [ "$INPUT_PATH" ]; then
+    TARGET="$INPUT_PATH"
+elif [ "$INPUT_PROJECT" ]; then
+    TARGET="--project=$INPUT_PROJECT"
+fi
+
+if [ ! "$INPUT_ROOT" ]; then
+    INPUT_ROOT=$(pwd)
+fi
+
+if [ ! "$INPUT_VERBOSE" = 'true' ]; then
+    unset INPUT_VERBOSE
 fi
 
 if [ "$INPUT_GENERATE_REPORT" = 'true' ]; then
-    GENERATE_REPORT='yep'
     REPORT_FILE=report.xml
+else
+    unset INPUT_GENERATE_REPORT
 fi
 
-if [ "$INPUT_ENABLED_INCONCLUSIVE" = 'true' ]; then
-    ENABLE_INCONCLUSIVE='yep'
+if [ ! "$INPUT_ENABLE_INCONCLUSIVE" = 'true' ]; then
+    unset INPUT_ENABLE_INCONCLUSIVE
 fi
 
-cppcheck "$INPUT_PATH" \
-    --enable="$INPUT_ENABLED_CHECKS" \
-    ${ENABLE_INCONCLUSIVE:+--inconclusive} \
-    ${GENERATE_REPORT:+--output-file=$REPORT_FILE} \
-    ${VERBOSE:+--verbose} \
+cppcheck "$TARGET" \
     ${CHECK_CONFIG:+--check-config} \
+    --enable="$INPUT_ENABLED_CHECKS" \
+    ${INPUT_ENABLE_INCONCLUSIVE:+--inconclusive} \
+    ${INPUT_GENERATE_REPORT:+--output-file=$REPORT_FILE} \
+    ${INPUT_VERBOSE:+--verbose} \
+    -rp="$INPUT_ROOT" \
     -j "$(nproc)" \
     --xml \
     "$INPUT_INCLUDE_DIRECTORIES" \
     "$INPUT_EXCLUDE_FROM_CHECK"
 
-if [ "$GENERATE_REPORT" ]; then
+if [ "$INPUT_GENERATE_REPORT" ]; then
     cppcheck-htmlreport \
         --file="$REPORT_FILE" \
         --title="$INPUT_REPORT_NAME" \

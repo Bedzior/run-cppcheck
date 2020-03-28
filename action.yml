@@ -30,13 +30,19 @@ inputs:
     required: false
     default: ''
   path:
-    description: 'Path to your project'
-    required: true
+    description: 'Path to your project; either this or "project" ought to be set'
+    required: false
     default: '.'
+  project:
+    description: 'Project file containing compile lists and commands (Cppcheck GUI, CMake, Visual Studio, C++ Builder are currently supported); either this or "path" ought to be set'
+    required: false
   report name:
     description: 'Name of your report'
     required: false
     default: ${{ github.repository }}
+  root:
+    description: 'Root directory of the project (current directory by default)'
+    required: false
   verbose:
     description: 'Verbose Cppcheck error descriptions'
     required: false
