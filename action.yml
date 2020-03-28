@@ -51,6 +51,8 @@ inputs:
 outputs:
   reportPath:
     description: 'Path to XML report file'
+  htmlReportPath:
+    description: 'Path to HTML report directory'
 
 runs:
   using: 'docker'

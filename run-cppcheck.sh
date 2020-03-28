@@ -10,10 +10,10 @@ fi
 if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
     echo Parameter 'path' or 'project' required
     exit 1
-elif [ "$INPUT_PATH" = 'true' ]; then
-    TARGET="$INPUT_PATH"
 elif [ "$INPUT_PROJECT" = 'true' ]; then
     TARGET="--project=$INPUT_PROJECT"
+elif [ "$INPUT_PATH" = 'true' ]; then
+    TARGET="$INPUT_PATH"
 fi
 
 if [ ! "$INPUT_ROOT" ]; then
@@ -25,7 +25,8 @@ if [ ! "$INPUT_VERBOSE" = 'true' ]; then
 fi
 
 if [ "$INPUT_GENERATE_REPORT" = 'true' ]; then
-    REPORT_FILE=report.xml
+    REPORT_FILE=$(pwd)/report.xml
+    echo "::set-output name=reportPath::${REPORT_FILE}"
 else
     unset INPUT_GENERATE_REPORT
 fi
@@ -51,4 +52,5 @@ if [ "$INPUT_GENERATE_REPORT" ]; then
         --file="$REPORT_FILE" \
         --title="$INPUT_REPORT_NAME" \
         --report-dir=output
+    echo "::set-output name=htmlReportPath::$(pwd)/output"
 fi
