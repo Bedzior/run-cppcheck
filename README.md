@@ -120,6 +120,10 @@ verbose:
 For all you wishing to know, exactly why something was marked as dubious or wrong by Cppcheck
 
 # Acknowledgments
+Docker image's source code is available [here](https://github.com/Facthunder/cppcheck)
+
+This action makes use of [Cppcheck](https://github.com/danmar/cppcheck), which is a great open-source tool I can recommend.
+
 I would like to thank `dbeef` for providing a suiting testbed for this GitHub Action in form of his spelunky-psp project repository. Check it out [here](https://github.com/dbeef/spelunky-psp)!
 
 # License
