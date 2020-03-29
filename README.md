@@ -40,35 +40,33 @@ Enjoy!
 
 ### `debug`
 ```yml
-debug:
-  description: 'Debug script run to troubleshoot configuration errors'
-  required: false
-  default: false
+description: 'Debug script run to troubleshoot configuration errors'
+required: false
+default: false
 ```
+This is here to ease troubleshooting, resolving issues and for developers' convenience.
 Uses `set -x` to see commands passed to `sh`
+
 ### `enabled checks`
 ```yml
-enabled checks:
-  description: 'Which checks are enabled'
-  required: false
-  default: 'all'
+description: 'Which checks are enabled'
+required: false
+default: 'all'
 ```
 See [wiki](https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/) for a full reference.
 
 ### `enable inconclusive`
 ```yml
-enable inconclusive:
-  description: 'Enable inconclusive checks'
-  required: false
-  default: false
+description: 'Enable inconclusive checks'
+required: false
+default: false
 ```
 
 ### `exclude from check`
 ```yml
-exclude from check:
-  description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-i`, space-delimited'
-  required: false
-  default: ''
+description: 'Which directories or files to exclude from analysis; format: paths prefixed with `-i`, space-delimited'
+required: false
+default: ''
 ```
 For now it's a space-delimited list of paths, each prefixed with `-i`. E.g.
 * `-ivendor`
@@ -76,18 +74,16 @@ For now it's a space-delimited list of paths, each prefixed with `-i`. E.g.
 
 ### `generate report`
 ```yml
-generate report:
-  description: 'Whether to generate an XML report'
-  required: false
-  default: true
+description: 'Whether to generate an XML and HTML reports'
+required: false
+default: true
 ```
 
 ### `include directories`
 ```yml
-include directories:
-  description: 'Include paths; format: directories prefixed with `-I`, space-delimited'
-  required: false
-  default: ''
+description: 'Include paths; format: directories prefixed with `-I`, space-delimited'
+required: false
+default: ''
 ```
 For now it's a space-delimited list of directories, each prefixed with `-I`. E.g.
 * `-I3rdparty/super_library/include`
@@ -95,29 +91,26 @@ For now it's a space-delimited list of directories, each prefixed with `-I`. E.g
 
 ### `path`
 ```yml
-path:
-  description: 'Path to your project'
-  required: true
-  default: '.'
+description: 'Path to your project, passed directly to Cppcheck'
+required: true
+default: '.'
 ```
 
 ### `report name`
 ```yml
-report name:
-  description: 'Name of your report'
-  required: false
-  default: ${{ github.repository }}
+description: 'Name of your report'
+required: false
+default: ${{ github.repository }}
 ```
-Report title, as displayed in resulting `index.html`
+Report title, displayed in resulting `index.html`
 
 ### `verbose`
 ```yml
-verbose:
-  description: 'Verbose Cppcheck error descriptions'
-  required: false
-  default: false
+description: 'Verbose Cppcheck error descriptions'
+required: false
+default: false
 ```
-For all you wishing to know, exactly why something was marked as dubious or wrong by Cppcheck
+For all those wishing to know, exactly why something was marked as dubious or wrong by Cppcheck
 
 # Acknowledgments
 Docker image's source code is available [here](https://github.com/Facthunder/cppcheck)
