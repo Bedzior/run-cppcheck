@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 if [ ! "$INPUT_DEBUG" = 'true' ]; then
     unset INPUT_DEBUG
@@ -59,3 +60,5 @@ if [ "$INPUT_GENERATE_REPORT" ]; then
         --report-dir="$REPORT_DIR"
     echo "::set-output name=htmlReportPath::$REPORT_DIR"
 fi
+
+exit 0
