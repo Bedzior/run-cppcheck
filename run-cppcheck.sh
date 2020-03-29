@@ -7,7 +7,7 @@ else
 fi
 
 if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
-    echo Parameter 'path' or 'project' required
+    echo "::error file=run-cppcheck.sh::Parameter 'path' or 'project' required"
     exit 1
 elif [ "$INPUT_PROJECT" ]; then
     TARGET="--project=$INPUT_PROJECT"
