@@ -12,9 +12,9 @@ if [ ! "$INPUT_PATH" ] && [ ! "$INPUT_PROJECT" ]; then
 elif [ "$INPUT_PROJECT" ]; then
     TARGET="--project=$INPUT_PROJECT"
     # This is a hack to have paths properly mapped between Docker host and container
-    mkdir -p "${GITHUB_WORKSPACE}"
+    mkdir -p "${RUNNER_WORKSPACE}"
     WORKDIR=$(pwd)
-    (cd "${GITHUB_WORKSPACE}/.." && ln -sf "${WORKDIR}" "$(basename $GITHUB_WORKSPACE)")
+    (cd "${RUNNER_WORKSPACE}/.." && ln -sf "${WORKDIR}" "$(basename $RUNNER_WORKSPACE)")
 elif [ "$INPUT_PATH" ]; then
     TARGET="$INPUT_PATH"
 fi
