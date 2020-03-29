@@ -14,14 +14,14 @@ elif [ "$INPUT_PROJECT" ]; then
     # This is a hack to have paths properly mapped between Docker host and container
     mkdir -p "${RUNNER_WORKSPACE}"
     WORKDIR=$(pwd)
-    (cd "${RUNNER_WORKSPACE}" && ln -sf "${WORKDIR}" "$(basename $RUNNER_WORKSPACE)")
+    (cd "${RUNNER_WORKSPACE}" && ln -sf "${WORKDIR}" "$(basename "$RUNNER_WORKSPACE")")
     ls "${RUNNER_WORKSPACE}"
+    #TODO add error if link is wrong
+    if [ ! "$INPUT_ROOT" ]; then
+        INPUT_ROOT="${RUNNER_WORKSPACE}/$(basename "$RUNNER_WORKSPACE")"
+    fi
 elif [ "$INPUT_PATH" ]; then
     TARGET="$INPUT_PATH"
-fi
-
-if [ ! "$INPUT_ROOT" ]; then
-    INPUT_ROOT="$(pwd)"
 fi
 
 if [ ! "$INPUT_VERBOSE" = 'true' ]; then
