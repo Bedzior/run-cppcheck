@@ -33,3 +33,8 @@ jobs:
     - name: Test shouldn't succeed
       if: success()
       run: exit 1
+    - name: Test should fail
+      if: failure()
+      run: |
+        echo Expected failure
+        exit 0
