@@ -30,10 +30,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: No project or path test
       uses: ./
-      continue-on-error: true
-    - name: Test should fail
-      if: failure()
-      run: echo Previous test succeeded
     - name: Test shouldn't succeed
       if: success()
       run: exit 1
